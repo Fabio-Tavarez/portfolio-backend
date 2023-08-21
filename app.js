@@ -4,9 +4,15 @@ const morgan = require("morgan");
 
 const app = express();
 
+const bookController = require("./controllers/bookController");
+const commentsController = require("./controllers/commentsController");
+
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+
+app.use("/books", bookController);
+app.use("/comments", commentsController);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Bookstore App");
