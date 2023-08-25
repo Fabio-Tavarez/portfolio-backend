@@ -54,9 +54,10 @@ const deleteBook = async (id) => {
 
 const updateBookById = async (id, book) => {
   try {
-    const updatedBook = await db.any(
-      "UPDATE book set volume = $1, series = $2, price = $3, author = $4, rating = $5, favorite = $6, genre = $7, description = $8WHERE id = $9 RETURNING *"[
-        (book.volume,
+    const updatedBook = await db.one(
+      "UPDATE book SET volume = $1, series = $2, price = $3, author = $4, rating = $5, favorite = $6, genre = $7, description = $8 WHERE id = $9 RETURNING *",
+      [
+        book.volume,
         book.series,
         book.price,
         book.author,
@@ -64,7 +65,7 @@ const updateBookById = async (id, book) => {
         book.favorite,
         book.genre,
         book.description,
-        id)
+        id,
       ]
     );
     return updatedBook;
@@ -72,6 +73,7 @@ const updateBookById = async (id, book) => {
     return error;
   }
 };
+
 
 module.exports = {
   getAllBooks,

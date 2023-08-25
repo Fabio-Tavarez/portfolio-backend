@@ -54,7 +54,7 @@ router.delete("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedBook = await updateBookById(id, req.body);
- 
+ console.log(updatedBook);
   if (updatedBook.length === 0) {
     res.status(404).json({ message: "not found!", error: true });
   } else {
