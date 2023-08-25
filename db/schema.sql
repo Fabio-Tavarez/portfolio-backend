@@ -15,7 +15,8 @@ CREATE TABLE book (
     rating INT,
     favorite BOOLEAN,
     genre TEXT,
-    description TEXT
+    description TEXT,
+    image_path VARCHAR(255)
 );
 
 
